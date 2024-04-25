@@ -17,4 +17,8 @@ public class MemoApplicationController {
         return "addmemo";
     }
 
+    @GetMapping("/memo")
+    public String memo() {
+        return "memo";
+    }
 }
