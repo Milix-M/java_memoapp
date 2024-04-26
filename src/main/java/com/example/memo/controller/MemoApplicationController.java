@@ -12,6 +12,8 @@ import com.example.memo.responce.MemoList;
 import com.example.memo.service.MemoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class MemoApplicationController {
@@ -50,4 +52,16 @@ public class MemoApplicationController {
 
         return "memo";
     }
+
+    @GetMapping("/edit")
+    public String editMemo(@RequestParam String id) {
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String updateMemo(@RequestBody String id) {
+        return "redirect:/";
+    }
+
+
 }
