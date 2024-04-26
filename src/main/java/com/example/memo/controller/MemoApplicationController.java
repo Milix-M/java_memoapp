@@ -38,8 +38,11 @@ public class MemoApplicationController {
     @PostMapping("/add")
     public String addMemo(@ModelAttribute("MemoForm") MemoForm form, Model model) {
         Memo memo = new Memo();
+
+        // TODO : 空白だった場合のチェックをする
         memo.setTitle(form.getTitle());
         memo.setText(form.getText());
+
         memoService.createMemo(memo);
 
         return "redirect:/";
