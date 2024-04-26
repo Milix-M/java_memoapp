@@ -11,7 +11,7 @@ import com.example.memo.responce.MemoForm;
 import com.example.memo.responce.MemoList;
 import com.example.memo.service.MemoService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MemoApplicationController {
@@ -44,7 +44,10 @@ public class MemoApplicationController {
     }
 
     @GetMapping("/memo")
-    public String memo() {
+    public String memo(@RequestParam String id, Model model) {
+        Memo memo = memoService.getMemobyId(id);
+        model.addAttribute("memo", memo);
+
         return "memo";
     }
 }
