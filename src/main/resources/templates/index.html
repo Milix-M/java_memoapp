@@ -17,9 +17,8 @@
             <div class="mb-2">
                 <h2 class="text-xl font-bold">メモ一覧</h2>
             </div>
-            <ul class="">
-                <li th:replace="~{fragments :: memoitem (page='/memo', title='かいもの')}"></li>
-                <li th:replace="~{fragments :: memoitem (page='/memo', title='やることりすと')}"></li>
+            <ul th:each="memo : ${memolist.MemoList}">
+                <li th:replace="~{fragments :: memoitem (page='/memo', title=${memo.title})}"></li>
             </ul>
 
             <div class="flex justify-center mt-3">
