@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="cupcake">
 
 <head th:replace="~{fragments :: head (title='トップページ')}">
     <meta charset="UTF-8">
@@ -13,23 +13,27 @@
     <div class="container p-5 mx-auto">
         <h1 th:replace="~{fragments :: pagetitle (title='メモの追加')}"></h1>
 
-        <div class="mt-5 p-2">
+        <div class="mt-2 p-2">
             <form method="post" action="/add" th:object="${MemoForm}">
-                <label class="form-control w-full">
-                    <div class="label">
-                        <span class="label-text">タイトル</span>
-                        <span class="label-text-alt">50文字まで</span>
-                    </div>
-                    <input name="title" type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
-                </label>
-                <label class="form-control mt-1">
-                    <div class="label">
-                        <span class="label-text">内容</span>
-                    </div>
-                    <textarea name="text" class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
-                    <div class="label">
-                    </div>
-                </label>
+                <div class="flex justify-center">
+                    <label class="form-control w-full max-w-lg">
+                        <div class="label">
+                            <span class="label-text">タイトル</span>
+                            <span class="label-text-alt">50文字まで</span>
+                        </div>
+                        <input name="title" type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
+                    </label>
+                </div>
+                <div class="flex justify-center">
+                    <label class="form-control mt-1 w-full max-w-lg">
+                        <div class="label">
+                            <span class="label-text">内容</span>
+                        </div>
+                        <textarea name="text" class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
+                        <div class="label">
+                        </div>
+                    </label>
+                </div>
                 <div class="flex justify-center">
                     <input type="submit" class="btn" value="追加">
                 </div>
