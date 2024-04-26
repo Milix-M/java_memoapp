@@ -14,26 +14,26 @@
         <h1 th:replace="~{fragments :: pagetitle (title='メモの追加')}"></h1>
 
         <div class="mt-5 p-2">
-            <label class="form-control w-full">
-                <div class="label">
-                    <span class="label-text">タイトル</span>
-                    <span class="label-text-alt">50文字まで</span>
+            <form method="post" action="/add" th:object="${MemoForm}">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">タイトル</span>
+                        <span class="label-text-alt">50文字まで</span>
+                    </div>
+                    <input name="title" type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
+                </label>
+                <label class="form-control mt-1">
+                    <div class="label">
+                        <span class="label-text">内容</span>
+                    </div>
+                    <textarea name="text" class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
+                    <div class="label">
+                    </div>
+                </label>
+                <div class="flex justify-center">
+                    <input type="submit" class="btn" value="追加">
                 </div>
-                <input type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
-            </label>
-
-            <label class="form-control mt-1">
-                <div class="label">
-                    <span class="label-text">内容</span>
-                </div>
-                <textarea class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
-                <div class="label">
-                </div>
-            </label>
-
-            <div class="flex justify-center">
-                <button class="btn">追加</button>
-            </div>
+            </form>
         </div>
     </div>
 
