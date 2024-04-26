@@ -63,11 +63,13 @@
 
     <!-- メモのリストの要素 -->
     <div th:fragment="memoitem(page, title)">
-        <li>
-            <a th:href="${page}" href="">
-                <p th:text="${title}" class="text-md">タイトル</p>
-            </a>
-        </li>
+        <div class="flex justify-center m-1">
+            <div class="border border-2 rounded-lg shadow-sm max-w-md w-full p-3">
+                <a th:href="${page}" href="">
+                    <p th:text="${title}" class="text-md font-bold text-center">タイトル</p>
+                </a>
+            </div>
+        </div>
     </div>
 </body>
 
