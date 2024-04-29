@@ -66,7 +66,10 @@ public class MemoApplicationController {
     }
 
     @GetMapping("/edit")
-    public String editMemo(@RequestParam String id) {
+    public String editMemo(@RequestParam String id, Model model) {
+        Memo memo = memoService.getMemobyId(id);
+        model.addAttribute("memo", memo);
+
         return "edit";
     }
 

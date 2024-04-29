@@ -21,7 +21,7 @@
                             <span class="label-text">タイトル</span>
                             <span class="label-text-alt">50文字まで</span>
                         </div>
-                        <input name="title" type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
+                        <input th:field="${memo.title}" name="title" type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
                     </label>
                 </div>
                 <div class="flex justify-center">
@@ -29,7 +29,7 @@
                         <div class="label">
                             <span class="label-text">内容</span>
                         </div>
-                        <textarea name="text" class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
+                        <textarea th:field="${memo.text}" name="text" class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
                         <div class="label">
                         </div>
                     </label>
