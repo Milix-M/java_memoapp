@@ -46,6 +46,15 @@ public class MemoService {
         return newMemo;
     }
 
+    public Memo updateMemo(Memo memo) {
+        MemoEntity entity = new MemoEntity();
+        copyBeanToEntityForUpdate(memo, entity);
+        MemoEntity updatedEntity = memoRepository.save(entity);
+        Memo updatedMemo = new Memo();
+        copyEntityToBean(updatedEntity, updatedMemo);
+        return updatedMemo;
+    }
+
     private void copyEntityToBean(MemoEntity entity, Memo memo) {
         memo.setId(String.valueOf(entity.getMemoId()));
         memo.setTitle(entity.getMemoTitle());
@@ -62,6 +71,11 @@ public class MemoService {
         if (!"".equals(memo.getText())) {
             entity.setMemoText(memo.getText());
         }
+    }
+
+    private void copyBeanToEntityForUpdate(Memo memo, MemoEntity entity) {
+        entity.setMemoId(Integer.parseInt(memo.getId()));
+        copyBeanToEntityForInsert(memo, entity);
     }
 
 }
