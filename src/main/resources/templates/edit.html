@@ -14,7 +14,7 @@
         <h1 th:replace="~{fragments :: pagetitle (title='メモ編集')}"></h1>
 
         <div class="mt-2 p-2">
-            <form method="post" action="/add" th:object="${MemoForm}">
+            <form method="post" action="/add" th:object="${MemoForm}" id="editform">
                 <div class="flex justify-center">
                     <label class="form-control w-full max-w-lg">
                         <div class="label">
@@ -34,10 +34,11 @@
                         </div>
                     </label>
                 </div>
-                <div class="flex justify-center">
-                    <input type="submit" class="btn" value="編集を完了">
-                </div>
             </form>
+            <div class="flex justify-center space-x-3">
+                <input type="submit" class="btn" value="編集を完了" onclick="document.forms['editform'].submit()">
+                <a th:href="'/memo?id=' + ${memo.id}" href=""><button class="btn">メモに戻る</button></a>
+            </div>
         </div>
     </div>
 </body>
