@@ -74,7 +74,7 @@ public class MemoApplicationController {
 
     @PostMapping("/edit")
     public String updateMemo(@RequestParam String id, @ModelAttribute("MemoForm") MemoForm form, RedirectAttributes redirAttrs, Model model) {
-        Memo memo = new Memo();
+        Memo memo = memoService.getMemobyId(id);
 
         // タイトルが設定されていなかった場合エラーメッセージを渡す
         if (form.getTitle().equals("")) {
