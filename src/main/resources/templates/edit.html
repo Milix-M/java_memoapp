@@ -14,7 +14,7 @@
         <h1 th:replace="~{fragments :: pagetitle (title='メモ編集')}"></h1>
 
         <div class="mt-2 p-2">
-            <form method="post" action="/add" th:object="${MemoForm}" id="editform">
+            <form th:action="'/edit?id=' + ${memo.id}" method="post" action="/edit" th:object="${MemoForm}" id="editform">
                 <div class="flex justify-center">
                     <label class="form-control w-full max-w-lg">
                         <div class="label">

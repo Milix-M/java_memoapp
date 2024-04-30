@@ -73,7 +73,23 @@ public class MemoApplicationController {
     }
 
     @PostMapping("/edit")
-    public String updateMemo(@RequestBody String id) {
+    public String updateMemo(@RequestParam String id, @ModelAttribute("MemoForm") MemoForm form, RedirectAttributes redirAttrs, Model model) {
+        Memo memo = new Memo();
+
+        // タイトルが設定されていなかった場合エラーメッセージを渡す
+        if (form.getTitle().equals("")) {
+            ErrorFlash flash = new ErrorFlash("noValueError", "タイトルが入力されていません");
+            redirAttrs.addFlashAttribute("flash", flash);
+
+            return "redirect:/edit" + "?id=" + id;
+        }
+
+        memo.setTitle(form.getTitle());
+        memo.setText(form.getText());
+
+        memoService.updateMemo(memo);
+
+
         return "redirect:/";
     }
 
