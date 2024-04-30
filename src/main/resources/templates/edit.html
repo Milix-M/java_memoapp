@@ -27,7 +27,7 @@
         <div class="mt-2 p-2">
             <form th:action="'/edit?id=' + ${memo.id}" method="post" action="/edit" th:object="${MemoForm}" id="editform">
                 <div class="flex justify-center">
-                    <label class="form-control w-full max-w-lg">
+                    <label class="form-control w-full max-w-xl">
                         <div class="label">
                             <span class="label-text">タイトル</span>
                             <span class="label-text-alt">50文字まで</span>
@@ -36,11 +36,11 @@
                     </label>
                 </div>
                 <div class="flex justify-center">
-                    <label class="form-control mt-1 w-full max-w-lg">
+                    <label class="form-control mt-1 w-full max-w-xl">
                         <div class="label">
                             <span class="label-text">内容</span>
                         </div>
-                        <textarea th:field="${memo.text}" name="text" class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
+                        <textarea th:field="${memo.text}" name="text" class="textarea textarea-bordered h-60" placeholder="内容を入力..."></textarea>
                         <div class="label">
                         </div>
                     </label>
