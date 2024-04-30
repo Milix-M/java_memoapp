@@ -47,8 +47,8 @@
                 </div>
             </form>
             <div class="flex justify-center space-x-3">
-                <input type="submit" class="btn" value="編集を完了" onclick="document.forms['editform'].submit()">
                 <a th:href="'/memo?id=' + ${memo.id}" href=""><button class="btn">メモに戻る</button></a>
+                <input type="submit" class="btn btn-primary" value="編集を完了" onclick="document.forms['editform'].submit()">
             </div>
         </div>
     </div>
