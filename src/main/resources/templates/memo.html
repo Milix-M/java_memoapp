@@ -21,9 +21,14 @@
                 </div>
                 <div class="">
                     <p class="text-center text-sm mt-3">本文</p>
-                    <p th:text="${memo.text}" class="text-lg whitespace-pre-wrap mt-2">メモの詳細がここに入ります。</p>
+                    <p th:text="${memo.text}" class="text-md whitespace-pre-wrap mt-2">メモの詳細がここに入ります。</p>
                 </div>
             </div>
+        </div>
+
+        <div class="flex justify-center mt-3 space-x-3">
+            <a href="/"><button class="btn">トップに戻る</button></a>
+            <a th:href="'/edit?id=' + ${memo.id}" href="/edit"><button class="btn btn-primary">メモを編集する</button></a>
         </div>
     </div>
 </body>

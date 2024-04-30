@@ -11,7 +11,7 @@
     <header th:replace="~{fragments :: header}"></header>
 
     <div class="container p-5 mx-auto">
-        <h1 th:replace="~{fragments :: pagetitle (title='メモの追加')}"></h1>
+        <h1 th:replace="~{fragments :: pagetitle (title='メモ編集')}"></h1>
 
         <div class="flex justify-center mt-1">
             <div th:if="${flash}" role="alert" class="alert alert-error max-w-lg">
@@ -25,33 +25,33 @@
         </div>
 
         <div class="mt-2 p-2">
-            <form method="post" action="/add" th:object="${MemoForm}">
+            <form th:action="'/edit?id=' + ${memo.id}" method="post" action="/edit" th:object="${MemoForm}" id="editform">
                 <div class="flex justify-center">
-                    <label class="form-control w-full max-w-lg">
+                    <label class="form-control w-full max-w-xl">
                         <div class="label">
                             <span class="label-text">タイトル</span>
                             <span class="label-text-alt">50文字まで</span>
                         </div>
-                        <input name="title" type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
+                        <input th:field="${memo.title}" name="title" type="text" placeholder="タイトルを入力..." class="input input-bordered w-full" />
                     </label>
                 </div>
                 <div class="flex justify-center">
-                    <label class="form-control mt-1 w-full max-w-lg">
+                    <label class="form-control mt-1 w-full max-w-xl">
                         <div class="label">
                             <span class="label-text">内容</span>
                         </div>
-                        <textarea name="text" class="textarea textarea-bordered h-24" placeholder="内容を入力..."></textarea>
+                        <textarea th:field="${memo.text}" name="text" class="textarea textarea-bordered h-60" placeholder="内容を入力..."></textarea>
                         <div class="label">
                         </div>
                     </label>
                 </div>
-                <div class="flex justify-center">
-                    <input type="submit" class="btn" value="追加">
-                </div>
             </form>
+            <div class="flex justify-center space-x-3">
+                <a th:href="'/memo?id=' + ${memo.id}" href=""><button class="btn">メモに戻る</button></a>
+                <input type="submit" class="btn btn-primary" value="編集を完了" onclick="document.forms['editform'].submit()">
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>

@@ -6,12 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.example.memo.responce.ErrorFlash;
 import com.example.memo.responce.Memo;
 import com.example.memo.responce.MemoForm;
 import com.example.memo.responce.MemoList;
 import com.example.memo.service.MemoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class MemoApplicationController {
@@ -34,10 +37,20 @@ public class MemoApplicationController {
     }
 
     @PostMapping("/add")
-    public String addMemo(@ModelAttribute("MemoForm") MemoForm form, Model model) {
+    public String addMemo(@ModelAttribute("MemoForm") MemoForm form, RedirectAttributes redirAttrs, Model model) {
         Memo memo = new Memo();
+
+        // タイトルが設定されていなかった場合エラーメッセージを渡す
+        if (form.getTitle().equals("")) {
+            ErrorFlash flash = new ErrorFlash("noValueError", "タイトルが入力されていません");
+            redirAttrs.addFlashAttribute("flash", flash);
+
+            return "redirect:/add";
+        }
+
         memo.setTitle(form.getTitle());
         memo.setText(form.getText());
+
         memoService.createMemo(memo);
 
         return "redirect:/";
@@ -50,4 +63,34 @@ public class MemoApplicationController {
 
         return "memo";
     }
+
+    @GetMapping("/edit")
+    public String editMemo(@RequestParam String id, Model model) {
+        Memo memo = memoService.getMemobyId(id);
+        model.addAttribute("memo", memo);
+
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String updateMemo(@RequestParam String id, @ModelAttribute("MemoForm") MemoForm form, RedirectAttributes redirAttrs, Model model) {
+        Memo memo = memoService.getMemobyId(id);
+
+        // タイトルが設定されていなかった場合エラーメッセージを渡す
+        if (form.getTitle().equals("")) {
+            ErrorFlash flash = new ErrorFlash("noValueError", "タイトルが入力されていません");
+            redirAttrs.addFlashAttribute("flash", flash);
+
+            return "redirect:/edit" + "?id=" + id;
+        }
+
+        memo.setTitle(form.getTitle());
+        memo.setText(form.getText());
+
+        memoService.updateMemo(memo);
+
+
+        return "redirect:/";
+    }
+
 }
